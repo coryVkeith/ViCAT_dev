@@ -36,7 +36,8 @@ while read SAMPLE; do
     export ALLCONSENSUS="$OUT_DIR/all_consensus"
     export ERRORS="$OUT_DIR/errors"
     export COV="$SAMPLE_DIR/bowtie2/alignments/coverage/graphs"
-    init_dir "$SAMPLE_DIR" "$RAOUT" "$BOWOUT"  "$ALNMNTOUT" "$SPADESOUT" "$BLAST" "$CONTIGFILT" "$ALLSPADES" "$ALLBLAST" "$CONTIGS" "$BOWTIE2INDEX" "$CONSENSUS" "$ALLCONSENSUS" "$ERRORS" "$COV" 
+    export ALLCOV="$OUT_DIR/all_cov"
+    init_dir "$SAMPLE_DIR" "$RAOUT" "$ALLCOV" "$BOWOUT"  "$ALNMNTOUT" "$SPADESOUT" "$BLAST" "$CONTIGFILT" "$ALLSPADES" "$ALLBLAST" "$CONTIGS" "$BOWTIE2INDEX" "$CONSENSUS" "$ALLCONSENSUS" "$ERRORS" "$COV" 
 done <$PROFILE
 
 # Job submission 
@@ -126,7 +127,7 @@ init_dir "$STDERR_DIR4" "$STDOUT_DIR4"
 echo " launching $SCRIPT_DIR/run_gather_contigs.sh in queue"
 echo "previous job ID $PREV_JOB_ID"
 
-JOB_ID=`sbatch $ARGS --export=ALL,SAMPLE_DIR=$SAMPLE_DIR,OUT_DIR=$OUT_DIR,STDERR_DIR4=$STDERR_DIR4,STDOUT_DIR4=$STDOUT_DIR4,PROFILE=$PROFILE,GATHER=$GATHER,ERRORS=$ERRORS --job-name $Prog4 -o $STDOUT_DIR4/output.%a.out -e $STDERR_DIR4/err.%a.out --dependency=afterok:$PREV_JOB_ID -a 1-$NUM_JOB $SCRIPT_DIR/run_gather_contigs.sh`
+JOB_ID=`sbatch $ARGS --export=ALL,SAMPLE_DIR=$SAMPLE_DIR,SCRIPT_DIR=$SCRIPT_DIR,OUT_DIR=$OUT_DIR,STDERR_DIR4=$STDERR_DIR4,STDOUT_DIR4=$STDOUT_DIR4,PROFILE=$PROFILE,GATHER=$GATHER,ERRORS=$ERRORS --job-name $Prog4 -o $STDOUT_DIR4/output.%a.out -e $STDERR_DIR4/err.%a.out --dependency=afterok:$PREV_JOB_ID -a 1-$NUM_JOB $SCRIPT_DIR/run_gather_contigs.sh`
 #
 if [ "${JOB_ID}x" != "x" ]; then
         JOB_ID=${JOB_ID#"Submitted batch job "}
@@ -217,7 +218,30 @@ init_dir "$STDERR_DIR8" "$STDOUT_DIR8"
 echo " launching $SCRIPT_DIR/run_split.sh in queue"
 echo "previous job ID $PREV_JOB_ID"
 
-JOB_ID=`sbatch $ARGS --export=ALL,SAMPLE_DIR=$SAMPLE_DIR,BAMTOOLS=$BAMTOOLS,OUT_DIR=$OUT_DIR,STDERR_DIR8=$STDERR_DIR8,STDOUT_DIR8=$STDOUT_DIR8,PROFILE=$PROFILE,ALLBLAST=$ALLBLAST,BOWTIE=$BOWTIE,ERRORS=$ERRORS --job-name $Prog8 --dependency=afterok:$PREV_JOB_ID -o $STDOUT_DIR8/output.%a.out -e $STDERR_DIR8/err.%a.out -a 1-$NUM_JOB $SCRIPT_DIR/run_covgraph_for.sh`
+JOB_ID=`sbatch $ARGS --export=ALL,SAMPLE_DIR=$SAMPLE_DIR,SCRIPT_DIR=$SCRIPT_DIR,BAMTOOLS=$BAMTOOLS,OUT_DIR=$OUT_DIR,STDERR_DIR8=$STDERR_DIR8,STDOUT_DIR8=$STDOUT_DIR8,PROFILE=$PROFILE,ALLBLAST=$ALLBLAST,BOWTIE=$BOWTIE,ERRORS=$ERRORS --job-name $Prog8 --dependency=afterok:$PREV_JOB_ID -o $STDOUT_DIR8/output.%a.out -e $STDERR_DIR8/err.%a.out -a 1-$NUM_JOB $SCRIPT_DIR/run_covgraph_bed.sh`
+
+if [ "${JOB_ID}x" != "x" ]; then
+        JOB_ID=${JOB_ID#"Submitted batch job "}
+
+        echo Job: \"$JOB_ID\"
+        PREV_JOB_ID=$JOB_ID
+else
+        echo Problem submitting job. Job terminated.
+        exit 1
+fi
+
+###
+### This code writes the coverage information to graphs for each taxa in the sample.
+###
+Prog9="taxmat"
+export STDERR_DIR9="$SCRIPT_DIR/err/$Prog9"
+export STDOUT_DIR9="$SCRIPT_DIR/out/$Prog9"
+init_dir "$STDERR_DIR9" "$STDOUT_DIR9"
+
+echo " launching $SCRIPT_DIR/run_split.sh in queue"
+echo "previous job ID $PREV_JOB_ID"
+
+JOB_ID=`sbatch $ARGS --export=ALL,SAMPLE_DIR=$SAMPLE_DIR,SCRIPT_DIR=$SCRIPT_DIR,BAMTOOLS=$BAMTOOLS,OUT_DIR=$OUT_DIR,STDERR_DIR9=$STDERR_DIR9,STDOUT_DIR9=$STDOUT_DIR9,PROFILE=$PROFILE,ALLBLAST=$ALLBLAST,BOWTIE=$BOWTIE,ERRORS=$ERRORS --job-name $Prog9 --dependency=afterok:$PREV_JOB_ID -o $STDOUT_DIR9/output.%a.out -e $STDERR_DIR9/err.%a.out -a 1-$NUM_JOB $SCRIPT_DIR/run_taxmat.sh`
 
 if [ "${JOB_ID}x" != "x" ]; then
         JOB_ID=${JOB_ID#"Submitted batch job "}
