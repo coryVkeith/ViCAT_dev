@@ -231,7 +231,7 @@ else
 fi
 
 ###
-### This code writes the coverage information to graphs for each taxa in the sample.
+### This code writes the taxa matrix to a file for use in the downstream R code for community analysis.
 ###
 Prog9="taxmat"
 export STDERR_DIR9="$SCRIPT_DIR/err/$Prog9"
@@ -252,3 +252,32 @@ else
         echo Problem submitting job. Job terminated.
         exit 1
 fi
+
+###
+### This code writes the coverage information to graphs for each taxa in the sample.
+###
+Prog10="metadata"
+export STDERR_DIR10="$SCRIPT_DIR/err/$Prog10"
+export STDOUT_DIR10="$SCRIPT_DIR/out/$Prog10"
+init_dir "$STDERR_DIR10" "$STDOUT_DIR10"
+
+echo " launching $SCRIPT_DIR/run_split.sh in queue"
+echo "previous job ID $PREV_JOB_ID"
+
+JOB_ID=`sbatch $ARGS --export=ALL,SAMPLE_DIR=$SAMPLE_DIR,SCRIPT_DIR=$SCRIPT_DIR,BAMTOOLS=$BAMTOOLS,OUT_DIR=$OUT_DIR,STDERR_DIR10=$STDERR_DIR10,STDOUT_DIR10=$STDOUT_DIR10,PROFILE=$PROFILE,ALLBLAST=$ALLBLAST,BOWTIE=$BOWTIE,ERRORS=$ERRORS --job-name $Prog10 --dependency=afterok:$PREV_JOB_ID -o $STDOUT_DIR10/output.%a.out -e $STDERR_DIR10/err.%a.out
+
+if [ "${JOB_ID}x" != "x" ]; then
+        JOB_ID=${JOB_ID#"Submitted batch job "}
+
+        echo Job: \"$JOB_ID\"
+        PREV_JOB_ID=$JOB_ID
+else
+        echo Problem submitting job. Job terminated.
+        exit 1
+fi
+
+
+
+
+
+
