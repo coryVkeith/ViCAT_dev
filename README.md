@@ -103,9 +103,27 @@ To run the tool, go to the tools directory and execute the `run.sh` file.
         - `cov_for_graph.R`: R code to plot coverage of from files written in above step.   
     - `run_taxmat.sh`: Writes the taxanomic matrix of the submitted samples to `OUT_DIR/relative_abundance`. The file `taxmat.tsv` is a tab separated matrix containing the GenBank RefSeq accession number and sequence description, and is in the format used by Phyloseq in downstream community analysis.
     - `run_metadata.sh`: This converts the `combined_readscount.tsv` in `OUT_DIR/relative_abundance` to the format used by Phyloseq in downstream community analysis and writes to the new file `ViCAT_otutable.csv`. Using the `ViCAT_otutable.csv`, a metadata template file `metadata.csv` is written that retains the sample order and sample ID of the original samples as well as columns of potentially relevant useful metadata for downstream analysis. These values must be changed according to the sample information. These files are found in `OUT_DIR/relative_abundance`. This code also writes a descriptive table of the contigs which have blast hits to viral taxa in the `OUT_DIR/virus_contigs` folder.
+    - `out/`: Directory of all standard outputs from the scripts. This will contain the outputs of the individual tools in the pipelines in directorys that have the names of the jobs in the `run.sh` file.
+    - `err/`: Directory of all standard errors from the scripts. This will contain the errors of the individual tools in the pipelines in directorys that have the names of the jobs in the `run.sh` file.
 
 ### Explanation of directory structure
 
-
+- `OUT_DIR/all_blast`:
+- `OUT_DIR/all_consensus`:
+- `OUT_DIR/all_cov`:
+- `OUT_DIR/all_spades
+- `OUT_DIR/errors`:
+- `OUT_DIR/relative_abundance`:
+- `OUT_DIR/virus_contigs/`:
+- `OUT_DIR/[sample(n)]`:
+  - `blast/`:
+  - `blast_ref_fasta/`:
+    - `bowtie2index/`: 
+  - `bowtie2/`:
+    - `consensus/`:
+    - `unused_reads/`:
+    - `alignments/`:
+      - `coverage/`:
+      - `stats/`:
 
 
