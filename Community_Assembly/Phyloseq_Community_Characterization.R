@@ -153,26 +153,7 @@ png(file="Heatmap_jaccard.png", width=500, height=500)
 plot(heatmap)
 dev.off()
 
-###NMDS 
-dist = "jaccard"
-ordi = ordinate(physeq, method="NMDS", distance=dist)
-capture.output(ordi, file = "NMDS_stress.txt", append = FALSE)
-NMDS = plot_ordination(physeq, ordi, "samples", color="Genotype")
-NMDS = NMDS + ggtitle("Sim_Mock") + geom_polygon(aes(fill=Genotype))
-NMDS
-png(file="NMDS_jaccard.png", width=500, height=500)
-plot(NMDS)
-dev.off()
-
-###PCoA 
-physeq.ord <- ordinate(physeq, "PCoA", "bray", binary = FALSE)
-PCoA = plot_ordination(physeq, physeq.ord, type="samples", color="Genotype") 
-PCoA = PCoA + geom_polygon(aes(fill=Genotype)) + geom_point(size=5) + ggtitle("Sim_Mock")
-PCoA
-png(file="PCoA_bray.png", width=500, height=500)
-plot(PCoA)
-dev.off()
-
+                            
 ###### This code block will plot all distance methods
 
 ###Calls distance methods available for use.
@@ -213,5 +194,45 @@ p = p + ggtitle("MDS using various distance metrics for dataset")
 p
 png(file="MDS_dist_metrics.png", width=1000, height=1000)
 plot(p)
+dev.off()                            
+                            
+                            
+                            
+                            
+#___________________________________________________________________________________________|
+#                                                                                           |
+#The following code will generate NMDS and PCoA ordination plots using the desired distance |
+# metrics as determined by evaluating the data with the MDS using all distances from the    |
+# code above. Change the other variables for desired plot style and title. Other options    |
+# can be changed depending on desired aesthetics.                                           |
+#___________________________________________________________________________________________|                            
+                            
+### Change this to the desired distance metric.                           
+dist = "jaccard"
+### Change this to have the colors of the points in the ordination match the desired column in the metadata file.
+COLOR = "Genotype"
+### Change this to change the plot title.
+TITLE = "Sim_Mock"
+                            
+###NMDS 
+dist = "jaccard"
+ordi = ordinate(physeq, method="NMDS", distance=dist)
+capture.output(ordi, file = "NMDS_stress.txt", append = FALSE)
+NMDS = plot_ordination(physeq, ordi, "samples", color=COLOR)
+NMDS = NMDS + ggtitle(TITLE) + geom_polygon(aes(fill=COLOR))
+NMDS
+png(file="NMDS.png", width=500, height=500)
+plot(NMDS)
 dev.off()
+
+###PCoA 
+physeq.ord <- ordinate(physeq, "PCoA", distance=dist, binary = FALSE)
+PCoA = plot_ordination(physeq, physeq.ord, type="samples", color=COLOR) 
+PCoA = PCoA + geom_polygon(aes(fill=COLOR)) + geom_point(size=5) + ggtitle(TITLE)
+PCoA
+png(file="PCoA.png", width=500, height=500)
+plot(PCoA)
+dev.off()
+
+
 
