@@ -24,7 +24,7 @@
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ### Dependencies
-- [SPAdes](https://github.com/ablab/spades): at least version 3.14.1
+- [SPAdes](https://github.com/ablab/spades): at least version 3.15.1
 - [SeqKit](https://github.com/shenwei356/seqkit)
 - [csvtk](https://github.com/shenwei356/csvtk)
 - [Local Blast](https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=Download)
@@ -108,22 +108,22 @@ To run the tool, go to the tools directory and execute the `run.sh` file.
 
 ### Explanation of directory structure
 
-- `OUT_DIR/all_blast/`:
-- `OUT_DIR/all_consensus/`:
-- `OUT_DIR/all_cov/`:
-- `OUT_DIR/all_spades/`:
-- `OUT_DIR/errors/`:
-- `OUT_DIR/relative_abundance/`:
-- `OUT_DIR/virus_contigs/`:
-- `OUT_DIR/[sample(n)]/`:
-  - `blast/`:
-  - `blast_ref_fasta/`:
-    - `bowtie2index/`: 
-  - `bowtie2/`:
-    - `consensus/`:
-    - `unused_reads/`:
-    - `alignments/`:
-      - `coverage/`:
-      - `stats/`:
+- `OUT_DIR/all_blast/`: Contains the copied blast results for all samples in the run.
+- `OUT_DIR/all_consensus/`:Contains the extracted consensus sequences for all viral taxa in a sample, for all samples in the run.
+- `OUT_DIR/all_cov/`: Contains all of the reads mapped to viral RefSeq genomes within a sample, for all samples in the run.
+- `OUT_DIR/all_spades/`: Contains all of the *k*-mer and contig length filtered contigs for all samples in the run.
+- `OUT_DIR/errors/`: Contains the error logs for each sample in the run.
+- `OUT_DIR/relative_abundance/`: Contains the `combined_readscount.tsv`, `ViCAT_otutable.csv`, `taxmat.tsv`, and `metadata.csv` files for use in downstream community analysis in Phyloseq R package.
+- `OUT_DIR/virus_contigs/`: Contains all of the contigs which have blast hits to viral RefSeq accessions. Also contains `virus_contig_table.csv`.
+- `OUT_DIR/[sample(n)]/`: Directory for each sample in the run.
+  - `blast/`: Contains the blast results, `[sample]_blastn_results.tsv`. Also contains intermediate files containing information on unique accessions and unique contigs in the sample for use in building bowtie2 reference indices and depositing virus contigs.
+  - `blast_ref_fasta/`: Contains the RefSeq fasta genomes of the blast hits of the contigs of the sample, `[sample]_blasthits.fasta`. Also contains the fasta file with similar sequences removed by percent similarity, `[sample]_nr_ref.fasta`. Other files include the information used for clustering of sequences by similarity.
+    - `bowtie2index/`: Contains the bowtie2 reference index for read mapping.
+  - `bowtie2/`: Directory for files generated from read mapping to the RefSeq bowtie2 index.
+    - `consensus/`: Contains the consensus fastq for the reads mapped to RefSeq bowtie2 index.
+    - `unused_reads/`: Contains the reads not used in the read mapping to the RefSeq bowtie2 index.
+    - `alignments/`: Contains the sorted binary alignment of reads to the reference index, `[sample]_vircom_nr_sorted.bam`. Also contains the reference split binary alignments for generating statistics and coverage graphs, `[sample]_vircom_nr_sorted.REF_NC_######.#.bam`.
+      - `coverage/`: Contains coverage statistics of reads mapped to individual bases and combined coverage graphs, `[sample]_combined.svg`.
+      - `stats/`: Contains statistics for the bowtie2 read mapping and files used in determining reads mapped to individual RefSeq accessions.
 
 
