@@ -108,14 +108,14 @@ To run the tool, go to the tools directory and execute the `run.sh` file.
 
 ### Explanation of directory structure
 
-- `OUT_DIR/all_blast`:
-- `OUT_DIR/all_consensus`:
-- `OUT_DIR/all_cov`:
-- `OUT_DIR/all_spades
-- `OUT_DIR/errors`:
-- `OUT_DIR/relative_abundance`:
+- `OUT_DIR/all_blast/`:
+- `OUT_DIR/all_consensus/`:
+- `OUT_DIR/all_cov/`:
+- `OUT_DIR/all_spades/`:
+- `OUT_DIR/errors/`:
+- `OUT_DIR/relative_abundance/`:
 - `OUT_DIR/virus_contigs/`:
-- `OUT_DIR/[sample(n)]`:
+- `OUT_DIR/[sample(n)]/`:
   - `blast/`:
   - `blast_ref_fasta/`:
     - `bowtie2index/`: 
