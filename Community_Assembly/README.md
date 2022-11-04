@@ -1,2 +1,2 @@
 ### Explanation of directory
-Export `taxmat.tsv`, `metadata.csv`, and `ViCAT_otutable.csv` to this directory and edit `Pyhloseq_Community_Characterization.R` to generate figures.
+Export `taxmat.tsv`, `metadata.csv`, and `ViCAT_otutable.csv` from `OUT_DIR/relative_abundance/` to this directory and edit `Pyhloseq_Community_Characterization.R` to generate figures.
