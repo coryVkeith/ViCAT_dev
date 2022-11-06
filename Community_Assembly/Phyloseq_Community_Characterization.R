@@ -105,7 +105,7 @@ colnames(otumat) <- paste0("Sample", 1:ncol(otumat))
 
 
 ### create taxa matrix with species names
-taxmat <- read_tsv("sim_mock_taxmat.tsv") %>%
+taxmat <- read_csv("taxmat.csv") %>%
   column_to_rownames(var="RefID")
 taxmat$Species <- as.character(taxmat$Species)
 taxmat <- as.matrix(taxmat)
