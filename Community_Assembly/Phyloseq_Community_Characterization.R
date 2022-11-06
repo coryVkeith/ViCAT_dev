@@ -129,18 +129,16 @@ physeq = phyloseq(OTU, TAX, META)
 #                         This next block creates a generates figures for analysis.                 |
 #                                                                                                   |
 #___________________________________________________________________________________________________|
-#Label for samples on x-axis
-x-LABEL= "PlantID"
 
 
 ###Transforms data to compositional data, and plots Relative Abundance Bar Plot
 ra= transform_sample_counts(physeq, function(x) x/sum(x))
-barplot <- plot_bar(ra, "X-LABEL", fill = "Species")
+barplot <- plot_bar(ra, "PlantID", fill = "Species")
 png(file="Barplot.png", width=1000, height=1000)
 plot(barplot)
 dev.off()
 ###Creates heatmap
-heatmap <- plot_heatmap(ra, "NMDS", "jaccard", X-LABEL)
+heatmap <- plot_heatmap(ra, "NMDS", "jaccard", "PlantID")
 png(file="Heatmap_jaccard.png", width=500, height=500)
 plot(heatmap)
 dev.off()
