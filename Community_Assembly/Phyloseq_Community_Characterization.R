@@ -31,26 +31,6 @@ library("plyr")
 library("dplyr")
 library('compositions')
 library(DESeq2);packageVersion("DESeq2")
-#___________________________________________________________________________________________|
-#                                                                                           |
-#This reads the output of ViCAT and  converts it to the dataframe format for phyloseq.      |
-#Change the ViCAT_reads_mapped variable to the file or path to file.                        |
-#Write this file to a new file, if you wish to save it.                                     |
-#                                                                                           |
-#___________________________________________________________________________________________|
-ViCAT_reads_mapped = "sim_mock.tsv"
-mydata <- read_tsv(ViCAT_reads_mapped, col_names = FALSE)
-mydata <- mydata %>% separate(X1, into=c("sample_name", "RefID"), sep=".REF_")
-mydata <- mydata %>% pivot_wider(names_from = sample_name, values_from=X2, values_fill = 0)
-write.table(mydata, "sim_mock_otu.csv", sep=",", col.names=TRUE, row.names=FALSE)
-
-###Writes samples to file for metadata in order they are listed in mydata
-samples <- colnames(mydata[,-1])
-write.table(samples, "metadata.csv", sep=",", col.names=c("PlantID"), row.names=FALSE)
-metaformat <- read_csv("metadata.csv")
-metaformat <- cbind(metaformat, "SampleID" = 1:nrow(metaformat), "Genotype" = 1:nrow(metaformat), "Year_Sampled"= 1:nrow(metaformat), "Location"= 1:nrow(metaformat), "Other"= 1:nrow(metaformat))
-write.table(metaformat, "metadata.csv", sep=",", col.names=TRUE, row.names=FALSE)
-
 
 #___________________________________________________________________________________________|
 #                                                                                           |
@@ -68,7 +48,9 @@ write.table(metaformat, "metadata.csv", sep=",", col.names=TRUE, row.names=FALSE
 #                                                                                           |
 #___________________________________________________________________________________________|
 
-norm_data <- read_csv("sim_mock_otu.csv", col_names = TRUE)
+mydata <- read_csv("ViCAT_otutable.csv", col_names = TRUE)
+
+norm_data <- read_csv("ViCAT_otutable.csv", col_names = TRUE)
 norm_data
 norm_data <- as.matrix(norm_data[,-1])
 
@@ -91,10 +73,10 @@ sizeFactors(dds)
 
 ###Normalize
 normalized_counts <- counts(dds, normalized=TRUE)
-write.table(normalized_counts, file="sim_mock_normalized_counts.tsv", sep="\t", quote=F, col.names=NA)
+write.table(normalized_counts, file="ViCAT_normalized_counts.tsv", sep="\t", quote=F, col.names=NA)
 
 ###Replacing the Taxa assignment
-normalized_counts <- read_tsv("sim_mock_normalized_counts.tsv", col_names = TRUE)
+normalized_counts <- read_tsv("ViCAT_normalized_counts.tsv", col_names = TRUE)
 normalized_counts
 
 ### Takes the column from mydata (Accession numbers)
@@ -108,7 +90,11 @@ normalized_counts
 
 mydata <- normalized_counts                                                                         
 mydata                                                                                            
-#                                                                                                   
+
+#___________________________________________________________________________________________________|
+#                                                                                                   |
+#                         This next block creates a Phyloseq Object.                                |
+#                                                                                                   |
 #___________________________________________________________________________________________________|
 
 ### create otu matrix for read counts
@@ -117,9 +103,6 @@ otumat <-  mydata %>%
 otumat <- as.matrix(otumat)
 colnames(otumat) <- paste0("Sample", 1:ncol(otumat))
 
-#This performs the clustered log ratio transformation on the data and writes it to a new file.
-clrdata =clr(otumat)
-write.csv(clrdata, "sim_mock_clr.csv",row.names =FALSE)
 
 ### create taxa matrix with species names
 taxmat <- read_tsv("sim_mock_taxmat.tsv") %>%
@@ -141,14 +124,23 @@ TAX = tax_table(taxmat)
 ###Create phyloseq object
 physeq = phyloseq(OTU, TAX, META)
 
+#___________________________________________________________________________________________________|
+#                                                                                                   |
+#                         This next block creates a generates figures for analysis.                 |
+#                                                                                                   |
+#___________________________________________________________________________________________________|
+#Label for samples on x-axis
+x-LABEL= "PlantID"
+
+
 ###Transforms data to compositional data, and plots Relative Abundance Bar Plot
 ra= transform_sample_counts(physeq, function(x) x/sum(x))
-barplot <- plot_bar(ra, "PlantID", fill = "Species")
+barplot <- plot_bar(ra, "X-LABEL", fill = "Species")
 png(file="Barplot.png", width=1000, height=1000)
 plot(barplot)
 dev.off()
 ###Creates heatmap
-heatmap <- plot_heatmap(ra, "NMDS", "jaccard", "PlantID")
+heatmap <- plot_heatmap(ra, "NMDS", "jaccard", X-LABEL)
 png(file="Heatmap_jaccard.png", width=500, height=500)
 plot(heatmap)
 dev.off()
