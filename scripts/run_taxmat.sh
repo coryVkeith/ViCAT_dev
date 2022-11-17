@@ -17,14 +17,20 @@ fi
 cd ${OUT_DIR}/relative_abundance/
 
 # Grabs sequence description from the line, turns first space to a comma, removes the ">", and turns the first comma to a tab for the resulting tsv file.
-for f in ${SMPLE}*
-    do
-    grep ">" $f | sed 's/\ /,/' | sed 's/^.//' >> seqdescription.tsv
-done
+if [ -f "${SMPLE}_blasthits.fasta" ]; then
+    for f in ${SMPLE}*
+        do
+            grep ">" $f | sed 's/\ /,/' | sed 's/^.//' >> seqdescription.tsv
+    done
+    else 
+    echo " No virus references in directory ${OUT_DIR}/relative_abundance for ${SMPLE}." >> $ERRORS/${SMPLE}_error.log
+fi
+# Deduplicates the files and writes taxa matrix
+sort -u seqdescription.tsv -o taxmat.csv
 
-# Deduplicates the files
-sort -u seqdescription.tsv -o taxmat.tsv
+# Adds headers to the taxa matrix
+sed -i 1i"RefID,Species" taxmat.csv 
 
-sed -i 1i"RefID,Species" taxmat.tsv #| sed 's/,/\     /' >> new.tsv
-
-#sed 's/,/\     /' taxmat.tsv >> new.tsv
+if [ -f "${SMPLE}_blasthits.fasta" ]; then
+    rm *blasthits.fasta 
+fi

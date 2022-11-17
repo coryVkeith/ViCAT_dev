@@ -60,24 +60,3 @@ p1 <- grid.arrange(p, ncol =1)
 print(p1)
 dev.off()
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
