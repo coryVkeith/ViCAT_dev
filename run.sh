@@ -104,7 +104,7 @@ init_dir "$STDERR_DIR3" "$STDOUT_DIR3"
 echo " launching $SCRIPT_DIR/run_collect_contigs_accessions.sh in queue"
 echo "previous job ID $PREV_JOB_ID"
 
-JOB_ID=`sbatch $ARGS --export=ALL,OUT_DIR=$OUT_DIR,STDERR_DIR3=$STDERR_DIR3,STDOUT_DIR3=$STDOUT_DIR3,PROFILE=$PROFILE,ERRORS=$ERRORS,BLAST1line=$BLAST1line --job-name $Prog3 -o $STDOUT_DIR3/output.%a.out -e $STDERR_DIR3/err.%a.out --dependency=afterok:$PREV_JOB_ID -a 1-$NUM_JOB $SCRIPT_DIR/run_collect_contigs_accessions.sh`
+JOB_ID=`sbatch $ARGS --export=ALL,OUT_DIR=$OUT_DIR,STDERR_DIR3=$STDERR_DIR3,STDOUT_DIR3=$STDOUT_DIR3,PROFILE=$PROFILE,ERRORS=$ERRORS,BLAST1line=$BLAST1line --job-name $Prog3 -o $STDOUT_DIR3/output.%a.out -e $STDERR_DIR3/err.%a.out --dependency=afterok:$PREV_JOB_ID -a 1-$NUM_JOB $SCRIPT_DIR/run_write_files.sh`
 
 if [ "${JOB_ID}x" != "x" ]; then
         JOB_ID=${JOB_ID#"Submitted batch job "}
@@ -173,7 +173,7 @@ init_dir "$STDERR_DIR6" "$STDOUT_DIR6"
 echo " launching $SCRIPT_DIR/run_bowtie2buildnmap.sh in queue"
 echo "previous job ID $PREV_JOB_ID"
 
-JOB_ID=`sbatch $ARGS --export=ALL,BAMTOOLS=$BAMTOOLS,SAMPLE_DIR=$SAMPLE_DIR,ALLCONSENSUS=$ALLCONSENSUS,OUT_DIR=$OUT_DIR,STDERR_DIR6=$STDERR_DIR6,STDOUT_DIR6=$STDOUT_DIR6,PROFILE=$PROFILE,ALLBLAST=$ALLBLAST,BOWTIE=$BOWTIE,ERRORS=$ERRORS --job-name $Prog6 --dependency=afterok:$PREV_JOB_ID -o $STDOUT_DIR6/output.%a.out -e $STDERR_DIR6/err.%a.out -a 1-$NUM_JOB $SCRIPT_DIR/run_bowtie2buildnmap.sh`
+JOB_ID=`sbatch $ARGS --export=ALL,BAMTOOLS=$BAMTOOLS,SAMPLE_DIR=$SAMPLE_DIR,ALLCONSENSUS=$ALLCONSENSUS,OUT_DIR=$OUT_DIR,STDERR_DIR6=$STDERR_DIR6,STDOUT_DIR6=$STDOUT_DIR6,PROFILE=$PROFILE,ALLBLAST=$ALLBLAST,BOWTIE=$BOWTIE,ERRORS=$ERRORS --job-name $Prog6 --dependency=afterok:$PREV_JOB_ID -o $STDOUT_DIR6/output.%a.out -e $STDERR_DIR6/err.%a.out -a 1-$NUM_JOB $SCRIPT_DIR/run_bowtie2.sh`
 
 if [ "${JOB_ID}x" != "x" ]; then
         JOB_ID=${JOB_ID#"Submitted batch job "}
@@ -215,10 +215,10 @@ export STDERR_DIR8="$SCRIPT_DIR/err/$Prog8"
 export STDOUT_DIR8="$SCRIPT_DIR/out/$Prog8"
 init_dir "$STDERR_DIR8" "$STDOUT_DIR8"
 
-echo " launching $SCRIPT_DIR/run_split.sh in queue"
+echo " launching $SCRIPT_DIR/run_covgraph_bed.sh in queue"
 echo "previous job ID $PREV_JOB_ID"
 
-JOB_ID=`sbatch $ARGS --export=ALL,SAMPLE_DIR=$SAMPLE_DIR,SCRIPT_DIR=$SCRIPT_DIR,BAMTOOLS=$BAMTOOLS,OUT_DIR=$OUT_DIR,STDERR_DIR8=$STDERR_DIR8,STDOUT_DIR8=$STDOUT_DIR8,PROFILE=$PROFILE,ALLBLAST=$ALLBLAST,BOWTIE=$BOWTIE,ERRORS=$ERRORS --job-name $Prog8 --dependency=afterok:$PREV_JOB_ID -o $STDOUT_DIR8/output.%a.out -e $STDERR_DIR8/err.%a.out -a 1-$NUM_JOB $SCRIPT_DIR/run_covgraph_bed.sh`
+JOB_ID=`sbatch $ARGS --export=ALL,SAMPLE_DIR=$SAMPLE_DIR,SCRIPT_DIR=$SCRIPT_DIR,BAMTOOLS=$BAMTOOLS,OUT_DIR=$OUT_DIR,STDERR_DIR8=$STDERR_DIR8,STDOUT_DIR8=$STDOUT_DIR8,PROFILE=$PROFILE,ALLBLAST=$ALLBLAST,BOWTIE=$BOWTIE,ERRORS=$ERRORS --job-name $Prog8 --dependency=afterok:$PREV_JOB_ID -o $STDOUT_DIR8/output.%a.out -e $STDERR_DIR8/err.%a.out -a 1-$NUM_JOB $SCRIPT_DIR/run_covgraph.sh`
 
 if [ "${JOB_ID}x" != "x" ]; then
         JOB_ID=${JOB_ID#"Submitted batch job "}
@@ -238,7 +238,7 @@ export STDERR_DIR9="$SCRIPT_DIR/err/$Prog9"
 export STDOUT_DIR9="$SCRIPT_DIR/out/$Prog9"
 init_dir "$STDERR_DIR9" "$STDOUT_DIR9"
 
-echo " launching $SCRIPT_DIR/run_split.sh in queue"
+echo " launching $SCRIPT_DIR/run_taxmat.sh in queue"
 echo "previous job ID $PREV_JOB_ID"
 
 JOB_ID=`sbatch $ARGS --export=ALL,SAMPLE_DIR=$SAMPLE_DIR,SCRIPT_DIR=$SCRIPT_DIR,BAMTOOLS=$BAMTOOLS,OUT_DIR=$OUT_DIR,STDERR_DIR9=$STDERR_DIR9,STDOUT_DIR9=$STDOUT_DIR9,PROFILE=$PROFILE,ALLBLAST=$ALLBLAST,BOWTIE=$BOWTIE,ERRORS=$ERRORS --job-name $Prog9 --dependency=afterok:$PREV_JOB_ID -o $STDOUT_DIR9/output.%a.out -e $STDERR_DIR9/err.%a.out -a 1-$NUM_JOB $SCRIPT_DIR/run_taxmat.sh`
@@ -261,10 +261,10 @@ export STDERR_DIR10="$SCRIPT_DIR/err/$Prog10"
 export STDOUT_DIR10="$SCRIPT_DIR/out/$Prog10"
 init_dir "$STDERR_DIR10" "$STDOUT_DIR10"
 
-echo " launching $SCRIPT_DIR/run_split.sh in queue"
+echo " launching $SCRIPT_DIR/run_metadata.sh in queue"
 echo "previous job ID $PREV_JOB_ID"
 
-JOB_ID=`sbatch $ARGS --export=ALL,SAMPLE_DIR=$SAMPLE_DIR,SCRIPT_DIR=$SCRIPT_DIR,BAMTOOLS=$BAMTOOLS,OUT_DIR=$OUT_DIR,STDERR_DIR10=$STDERR_DIR10,STDOUT_DIR10=$STDOUT_DIR10,PROFILE=$PROFILE,ALLBLAST=$ALLBLAST,BOWTIE=$BOWTIE,ERRORS=$ERRORS --job-name $Prog10 --dependency=afterok:$PREV_JOB_ID -o $STDOUT_DIR10/output.%a.out -e $STDERR_DIR10/err.%a.out
+JOB_ID=`sbatch $ARGS --export=ALL,SAMPLE_DIR=$SAMPLE_DIR,SCRIPT_DIR=$SCRIPT_DIR,BAMTOOLS=$BAMTOOLS,OUT_DIR=$OUT_DIR,STDERR_DIR10=$STDERR_DIR10,STDOUT_DIR10=$STDOUT_DIR10,PROFILE=$PROFILE,ALLBLAST=$ALLBLAST,BOWTIE=$BOWTIE,ERRORS=$ERRORS --job-name $Prog10 --dependency=afterok:$PREV_JOB_ID -o $STDOUT_DIR10/output.%a.out -e $STDERR_DIR10/err.%a.out $SCRIPT_DIR/run_metadata.sh`
 
 if [ "${JOB_ID}x" != "x" ]; then
         JOB_ID=${JOB_ID#"Submitted batch job "}
@@ -275,9 +275,3 @@ else
         echo Problem submitting job. Job terminated.
         exit 1
 fi
-
-
-
-
-
-
