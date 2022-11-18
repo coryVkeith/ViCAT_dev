@@ -84,13 +84,13 @@ To run the tool, go to the tools directory and execute the `run.sh` file.
 
 `./run.sh`
 
-# Coverage Graphs
+#### Coverage Graphs
 Coverage graphs for each sample can be found in `CWD/OUT_DIR/all_cov_graphs` or in the sample directory.
 
-# Virus Contigs
+#### Virus Contigs
 Virus contigs can be found in `CWD/OUT_DIR/virus_contigs` and a table for contig number, length, and coverage can be found here too.
 
-# Figure Generation
+#### Figure Generation
 
 1. Once the tool has completed, output files for generating community assembly figures can be found in `CWD/OUT_DIR/relative_abundance/`.
     - `ViCAT_otutable.csv`: reads mapped to each taxa within each sample, for each sample.
