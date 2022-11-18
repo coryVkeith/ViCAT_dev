@@ -1,7 +1,0 @@
-begomovirus_P1
-begomovirus_P2
-begomovirus_P3
-begomovirus_P4
-begomovirus_P5
-begomovirus_P6
-begomovirus_P7
