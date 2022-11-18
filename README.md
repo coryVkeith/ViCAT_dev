@@ -57,7 +57,7 @@ Alternatively, create an Anaconda environment and download all of the tools with
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ### Quick Usage
-*OPTIONAL lines of code are identified by comment boxes in the respective scripts.*
+* Lines of code that can be changed are identified by obvious comment boxes in the respective scripts.*
 
 1. Edit the `config.sh` file in the home directory to include paths to:
     - RAW: the path to the raw data for the run.
@@ -67,21 +67,33 @@ Alternatively, create an Anaconda environment and download all of the tools with
     - PROFILE: the path to the file that inlcudes the sample names as they relate to the filenames. An example profile is located in the home directory.
     - [TOOLS]: any paths to tools that were not installed via Anaconda.
     - [USER_INFO]: information for the HPC scheduler.
-2. Edit the `run_spades.sh` lines 13 and 14 that set the file suffixes. The file can be found in `CWD/scripts`.
+2. Edit the `run_spades.sh` lines 19 and 20 to set the file suffixes. The file can be found in `CWD/scripts`.
 
     `F1="${SMPLE}_R1.fastq"`
     
     `R1="${SMPLE}_R2.fastq"`
+3. Edit the `run_bowtie2.sh` lines 18 and 19 to set the file suffixes. The file can be found in `CWD/scripts`.
     
-3. OPTIONAL but ***suggested***: edit the `run_covgraph_for.sh` lines 44-61 to remove portions of the sample name which may be uninformative and cause difficulties in reading coverage graph titles in the output files. The file can be found in `CWD/scripts`.
-4. OPTIONAL: edit the `run_blastn.sh` file on line 32 to change blast options.
-5. OPTIONAL: edit the `run_collect_contigs_accessions.sh` file on lines 25 and 42 to change filtering criteria for output files from Step 3. The file can be found in `CWD/scripts`. The file can be found in `CWD/scripts`.
-6. OPTIONAL: edit the `run_cdhit.sh` file on line 20 to change percent similarity of blast hits for clustering. The file can be found in `CWD/scripts`.
+4. OPTIONAL but ***suggested***: edit the `run_covgraph.sh` lines 51-55 to remove portions of the sample name which may be uninformative and cause difficulties in reading coverage graph titles in the output files. The file can be found in `CWD/scripts`.
+5. OPTIONAL: edit the `run_blastn.sh` file on line 32 to change blast options.
+6. OPTIONAL: edit the `run_write_files.sh` file on lines 25 and 42 to change filtering criteria for output files from Step 3. The file can be found in `CWD/scripts`. The file can be found in `CWD/scripts`.
+7. OPTIONAL: edit the `run_cdhit.sh` file on line 20 to change percent similarity of blast hits for clustering. The file can be found in `CWD/scripts`.
 
 
 To run the tool, go to the tools directory and execute the `run.sh` file.
 
 `./run.sh`
+
+#Figure Generation
+
+1. Once the tool has completed, output files for generating community assembly figures can be found in `CWD/OUT_DIR/relative_abundance`.
+    - `ViCAT_otutable.csv`: reads mapped to each taxa within each sample, for each sample.
+    - `taxmat.csv`: Taxonomic matrix of identified species found in all samples, redundancy removed.
+    - `metadata.csv`: Metadata matrix of sample information for the run. **THIS MUST BE EDITED WITH THE METADATA**
+2. 
+
+
+
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 
