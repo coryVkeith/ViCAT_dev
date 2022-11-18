@@ -8,11 +8,11 @@ export OUT_DIR="/CWD/out"
 export PROFILE="/CWD/profile.txt"
 
 # Location of tools and indices if installed outside of anaconda environemnt
-export BOWTIE="CWD/tools/bowtie2-2.4.1-linux-x86_64"
-export SPADES="CWD/tools/SPAdes-3.15.5-Linux/bin"
-export SEQKIT="CWD/tools/seqkit"
-export CSVTK="CWD/tools/csvtk"
-export BAMTOOLS="CWD/tools/bin"
+export BOWTIE=""
+export SPADES=""
+export SEQKIT="seqkit"
+export CSVTK="csvtk"
+export BAMTOOLS=""
 
 # Location of blast database and 1 line fasta
 export BLASTDB="CWD/blastdb/[database]"
