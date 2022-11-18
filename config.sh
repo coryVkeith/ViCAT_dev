@@ -7,18 +7,21 @@ export RAW="/CWD/test_data/sim_resist/mock_reads"
 export OUT_DIR="/CWD/out"
 export PROFILE="/CWD/profile.txt"
 
-# Location of tools and indices
+# Location of tools and indices if installed outside of anaconda environemnt
 export BOWTIE="CWD/tools/bowtie2-2.4.1-linux-x86_64"
 export SPADES="CWD/tools/SPAdes-3.15.5-Linux/bin"
 export SEQKIT="CWD/tools/seqkit"
 export CSVTK="CWD/tools/csvtk"
+export BAMTOOLS="CWD/tools/bin"
+
+# Location of blast database and 1 line fasta
 export BLASTDB="CWD/blastdb/[database]"
 export BLAST1line="CWD/blastdb/[database]_1line.fa"
-export BAMTOOLS="CWD/tools/bin"
 
 #Place to store scripts
 export SCRIPT_DIR="$PWD/scripts"
 export GATHER="$PWD/scripts"
+
 # User information
 export QUEUE="standard"
 export GROUP="[group_name]"
