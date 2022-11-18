@@ -19,7 +19,7 @@
 ![plot](https://github.com/cvk1988/ViCAT_dev/blob/main/figs/ViCAT_workflow1.png)
 
 ## Directory Structure
-![plot](https://github.com/cvk1988/ViCAT_dev/blob/main/figs/ViCAT_directory.png)
+![plot](https://github.com/cvk1988/ViCAT_dev/blob/main/figs/wildcat_dir.png)
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 
