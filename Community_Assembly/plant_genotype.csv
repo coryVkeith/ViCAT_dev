@@ -1,0 +1,22 @@
+﻿Plant,Genotype,Resistance
+1,A,Species A
+2,B,Species B
+3,C,Species C
+4,D,Species A&B
+5,E,Species A&C
+6,F,Species B&C
+7,G,None
+8,A,Species A
+9,B,Species B
+10,C,Species C
+11,D,Species A&B
+12,E,Species A&C
+13,F,Species B&C
+14,G,None
+15,A,Species A
+16,B,Species B
+17,C,Species C
+18,D,Species A&B
+19,E,Species A&C
+20,F,Species B&C
+21,G,None
