@@ -104,8 +104,6 @@ Virus contigs can be found in `CWD/OUT_DIR/virus_contigs` and a table for contig
 7. Output files should be generated in `CWD/OUT_DIR/relative_abundance/`
 
 
-
-
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ### Explanation of files for usage
