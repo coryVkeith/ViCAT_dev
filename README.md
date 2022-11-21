@@ -32,27 +32,35 @@
 - [Bowtie2](https://bowtie-bio.sourceforge.net/bowtie2/index.shtml)
 - [samtools](http://www.htslib.org/)
 - [bamtools](https://github.com/pezmaster31/bamtools)
-- R packages: ggplot2; gridExtra; plyr
+- R packages: ggplot2; gridExtra; plyr, deseq2, phyloseq
 - Python (3.6 or higher) packages: Bipython; sys
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ### Installation
 
-If tools are not installed on your HPC download the tools and install. Change the paths to the tools in `config.sh` to include the full path of the newly installed tools.
+## Anaconda environment yaml
+`ViCAT.yml` is included in the home directory. If this is the installation, do not change the lines in the `config.sh` file that include the paths to the tools.
 
-`SPADES="path/to/spades"`
+To install an environment containing all of the tools:
+    `conda env create -f ViCAT.yml`
 
-
-Alternatively, create an Anaconda environment and download all of the tools with conda.
+## Anaconda
+Create an Anaconda environment and download all of the tools with conda or pip. If this is the installation, do not change the lines in the `config.sh` file that include the paths to the tools.
 
 `conda create -n ViCAT python=3.7`
 
 `conda activate ViCAT`
 
 `pip install [packages]`
-
+OR
 `conda install -c bioconda [tool]`
+
+## Manual installion of tools
+
+If tools are not installed on your HPC download the tools and install. Change the paths to the tools in `config.sh` to include the full path of the newly installed tools.
+
+    - Example: `SPADES="path/to/spades"`
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 
