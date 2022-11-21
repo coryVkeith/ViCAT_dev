@@ -43,6 +43,7 @@ Before ViCAT can be run, a database needs to be created for blast. The instructi
 ## Installation
 
 ### Anaconda environment yaml
+***Recommended***
 `ViCAT.yml` is included in the home directory. If this is the installation, do not change the lines in the `config.sh` file that include the paths to the tools.
 
 To install an environment containing all of the tools:
@@ -67,11 +68,18 @@ If tools are not installed on your HPC download the tools and install. Change th
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 ## Tutorial
-Example data to generate all of the figures for a simulated viral mock community that has differential relative abundance in response to host background have been included in `CWD/test_data/`
+Example data to generate all of the figures for a simulated viral mock community that has differential relative abundance in response to host background have been included in `CWD/test_data/`.
 
-1. Navigate to `CWD/test_data/sim_resist/mock_reads/` to look at the simulated illumina data. The `profile.txt` includes the sample name only and two scripts must be edited to match the suffix of the files to include read information. This will be different for each run of ViCAT.
+1. Navigate to `CWD/test_data/sim_resist/mock_reads/` to look at the simulated illumina data. Create a `profile.txt` that includes the sample name only, excluding the suffixes for the illumina read pairs. One is already provided with the appropriate sample names in `CWD/`
+2. There are two scripts that must be edited to match the suffix of the files to include for the illumina read pair information. This will be different for each run of ViCAT.
     - `CWD/scripts/run_spades.sh` must be changed at lines 19 and 20 to match he suffix of the reads. `_R1.fastq` and `_R2.fastq` for each respective variable.
     - `CWD/scripts/run_bowtie2.sh` must be changed at lines 18 and 19 to match the suffix of the reads. `_R1.fastq` and `_R2.fastq` for each respective variable.
+3. Navigate back to the `CWD/` and edit the `config.sh` file to include the path to the raw data: `CWD/test_data/sim_resist/mock_reads/`. Also edit the path to the `profile.txt` file: `CWD/profile.txt`.
+4. The paths to tools should not need to be edited, if the `ViCAT.yml` was used to install the dependencies. If not, change the pahts to the tools.
+5. OPTIONAL but ***suggested***: edit the `CWD/scripts/run_covgraph.sh` line 53-60 to remove portions of the sample name which may be uninformative and cause difficulties in reading coverage graph titles in the output files. The file can be found in `CWD/scripts`.
+    - The `$samp_pref` variable should be changed to exclude uniformative information in the file name to only include the unique identifiers of the samples. This will allow for easier readability in the coverage graph titles. For this set, "begomovirus" is common to all of the samples so it should be removed at line 53. 
+    - The `$samp_suff` variable should be changed in a similar manner at line 54. 
+6. 
 
 
 ## Quick Usage
@@ -92,7 +100,7 @@ Example data to generate all of the figures for a simulated viral mock community
     `R1="${SMPLE}_R2.fastq"`
 3. Edit the `run_bowtie2.sh` lines 18 and 19 to set the file suffixes. The file can be found in `CWD/scripts`.
     
-4. OPTIONAL but ***suggested***: edit the `run_covgraph.sh` lines 51-55 to remove portions of the sample name which may be uninformative and cause difficulties in reading coverage graph titles in the output files. The file can be found in `CWD/scripts`.
+4. OPTIONAL but ***suggested***: edit the `run_covgraph.sh` lines 53-54 to remove portions of the sample name which may be uninformative and cause difficulties in reading coverage graph titles in the output files. The file can be found in `CWD/scripts`.
 5. OPTIONAL: edit the `run_blastn.sh` file on line 32 to change blast options.
 6. OPTIONAL: edit the `run_write_files.sh` file on lines 25 and 42 to change filtering criteria for output files from Step 3. The file can be found in `CWD/scripts`. The file can be found in `CWD/scripts`.
 7. OPTIONAL: edit the `run_cdhit.sh` file on line 20 to change percent similarity of blast hits for clustering. The file can be found in `CWD/scripts`.
