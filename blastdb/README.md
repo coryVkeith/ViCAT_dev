@@ -2,7 +2,7 @@
 
 ViCAT can handle any custom database. This example uses the NCBI viral RefSeq sequences. 
 
-## RefSeq Viral Database
+## NCBI Viral RefSeq Database
 
 ### Download fasta files from GenBank
 Run `build_blastdb.sh` to download the viral refseq genomic databases, and create a blast database for the blast step in ViCAT. There should be 9 blast database files with different suffixes added after `.fsa`. Example: `viraldb.fsa.ndb`
