@@ -15,8 +15,8 @@ export SMPLE=`head -n +${SLURM_ARRAY_TASK_ID} $PROFILE | tail -n 1`
 ###                   Change the suffix to match the reads.                 |
 #___________________________________________________________________________|
 
-F1="${SMPLE}_R1_001.fastq.gz"
-R1="${SMPLE}_R2_001.fastq.gz"
+F1="${SMPLE}_R1.fastq"
+R1="${SMPLE}_R2.fastq"
 
 ###bowtie2 build index of filtered references above
 if [[ -f "$OUT_DIR/$SMPLE/blast_ref_fasta/${SMPLE}_nr_ref.fasta" ]]; then
