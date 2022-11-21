@@ -21,7 +21,7 @@ ViCAT can handle any custom database. This example uses the NCBI viral RefSeq se
 
 ## Custom database
 
-# fasta files
+### fasta files
 
 1. Upload the appropriate fasta file, or files into the database directory.
 2. Open `build_blastdb.sh`
