@@ -4,14 +4,14 @@ ViCAT can handle any custom database. This example uses the NCBI viral RefSeq se
 
 ## RefSeq Viral Database
 
-# Download fasta files from GenBank
+### Download fasta files from GenBank
 
 1. Go to viral [refseq](https://ftp.ncbi.nlm.nih.gov/refseq/release/viral/)
 2. Download all `viral.#.#.genomic.fna.gz` files.
 3. Upload to this directory, or the directory of all of your databases.
 4. Unzip the files. 
 
-# Concatenate files into one file and convert to 1 line fasta
+### Concatenate files into one file and convert to 1 line fasta
 
 1. Navigate to the directory with the database `.fna` 
 2. Open `build_blastdb.sh`
