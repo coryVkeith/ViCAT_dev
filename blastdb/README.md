@@ -1,7 +1,10 @@
-### This is a test
+### Create blast database from fasta file
 
-## This is only a test
+ViCAT can handle any custom database. This example uses the NCBI viral RefSeq sequences.
 
+## Download
+
+Go to viral [refseq](https://ftp.ncbi.nlm.nih.gov/refseq/release/viral/)
 
 # Explanation for developers
 
