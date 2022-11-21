@@ -36,16 +36,19 @@
 - Python (3.6 or higher) packages: Bipython; sys
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------
+## Database
+Before ViCAT can be run, a database needs to be created for blast. The instructions and a code for building custom databases are included in `CWD/blastdb`.
 
-### Installation
+## Installation
 
-## Anaconda environment yaml
+
+### Anaconda environment yaml
 `ViCAT.yml` is included in the home directory. If this is the installation, do not change the lines in the `config.sh` file that include the paths to the tools.
 
 To install an environment containing all of the tools:
     `conda env create -f ViCAT.yml`
 
-## Anaconda
+### Anaconda
 Create an Anaconda environment and download all of the tools with conda or pip. If this is the installation, do not change the lines in the `config.sh` file that include the paths to the tools.
 
 `conda create -n ViCAT python=3.7`
@@ -56,7 +59,7 @@ Create an Anaconda environment and download all of the tools with conda or pip. 
 OR
 `conda install -c bioconda [tool]`
 
-## Manual installion of tools
+### Manual installion of tools
 
 If tools are not installed on your HPC download the tools and install. Change the paths to the tools in `config.sh` to include the full path of the newly installed tools.
 
@@ -64,7 +67,7 @@ If tools are not installed on your HPC download the tools and install. Change th
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 
-### Quick Usage
+## Quick Usage
 * Lines of code that can be changed are identified by obvious comment boxes in the respective scripts.*
 
 1. Edit the `config.sh` file in the home directory to include paths to:
