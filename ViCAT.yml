@@ -7,6 +7,7 @@ channels:
   - R
   - defaults
 dependencies:
+  - pip==22.3.1
   - _libgcc_mutex=0.1=conda_forge
   - _openmp_mutex=4.5=2_gnu
   - _sysroot_linux-64_curr_repodata_hack=3=h5bd9786_13
@@ -54,4 +55,4 @@ dependencies:
     - pip==22.3.1
     - setuptools==65.5.1
     - wheel==0.38.4
-prefix: /home/u32/corykeith/miniconda3/envs/ViCAT
+
