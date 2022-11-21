@@ -27,7 +27,7 @@ ViCAT can handle any custom database. This example uses the NCBI viral RefSeq se
 2. Open `build_blastdb.sh`
 3. Change the variables on lines 5-7 to the desired database names.
 4. If there are multiple fasta files desired to be in the new database, change line 10 to have the file suffix matching the custom fasta files.
-  - Example: `cat *.fasta > $ALL_FASTA` or `cat *.fa > $ALL_FASTA`
+    - Example: `cat *.fasta > $ALL_FASTA` or `cat *.fa > $ALL_FASTA`
 5. If there is only one fasta file, comment out line 10.
 6. Run `build_blastdb` in the directory with the custom fasta database sequences.
 7. Check that your database is accurate. There should be 9 files with different suffixes added after `.fsa`
