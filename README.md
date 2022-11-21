@@ -66,6 +66,9 @@ If tools are not installed on your HPC download the tools and install. Change th
     - Example: `SPADES="path/to/spades"`
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------
+## Tutorial
+Example data to generate all of the figures for a simulated viral mock community that has differential relative abundance in response to host background have been included in `CWD/test_data/`
+
 
 ## Quick Usage
 * Lines of code that can be changed are identified by obvious comment boxes in the respective scripts.*
