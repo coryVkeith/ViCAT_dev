@@ -1,5 +1,10 @@
 #!/bin/sh
 
+## This code downloads the viral refseq nucleotide genomes
+wget ftp://ftp.ncbi.nlm.nih.gov/refseq/release/viral/*.fna.gz
+
+## This code unzips the downloaded genomes
+gzip -d *.fna.gz
 
 ## sets variables
 ALL_FASTA="viraldb.fsa"
