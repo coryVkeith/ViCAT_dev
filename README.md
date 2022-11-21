@@ -37,10 +37,10 @@
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 ## Database
+
 Before ViCAT can be run, a database needs to be created for blast. The instructions and a code for building custom databases are included in `CWD/blastdb`.
 
 ## Installation
-
 
 ### Anaconda environment yaml
 `ViCAT.yml` is included in the home directory. If this is the installation, do not change the lines in the `config.sh` file that include the paths to the tools.
@@ -68,6 +68,10 @@ If tools are not installed on your HPC download the tools and install. Change th
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 ## Tutorial
 Example data to generate all of the figures for a simulated viral mock community that has differential relative abundance in response to host background have been included in `CWD/test_data/`
+
+1. Navigate to `CWD/test_data/sim_resist/mock_reads/` to look at the simulated illumina data. The `profile.txt` includes the sample name only and two scripts must be edited to match the suffix of the files to include read information. This will be different for each run of ViCAT.
+    - `CWD/scripts/run_spades.sh` must be changed at lines 19 and 20 to match he suffix of the reads. `_R1.fastq` and `_R2.fastq` for each respective variable.
+    - `CWD/scripts/run_bowtie2.sh` must be changed at lines 18 and 19 to match the suffix of the reads. `_R1.fastq` and `_R2.fastq` for each respective variable.
 
 
 ## Quick Usage
