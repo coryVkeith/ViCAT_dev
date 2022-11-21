@@ -41,6 +41,8 @@ fi
 ### This changes the names of the files to remove uninformative text from the filenames. |
 ###                                 EDIT FOR EACH RUN                                    |
 ###                       '#':Remove prefix       '%':Remove suffix                      |
+###                          Example file to be manipulated:                             |
+###             "begomovirus_P3_vircom_nr_sorted.REF_NC_003199.1.bam"                    |
 #----------------------------------------------------------------------------------------|
 cd ${OUT_DIR}/${SMPLE}/bowtie2/alignments/coverage/
 
@@ -48,7 +50,7 @@ if [[ -f "${OUT_DIR}/${SMPLE}/bowtie2/alignments/coverage/coverage.txt" ]]; then
     for f in *vircom*
         do
         echo $f
-        samp_pref="${f#*146201_*}"
+        samp_pref="${f#begomovirus_*}"
         samp_suff="${samp_pref%_vircom_nr_*}"
         echo $samp_suff
         acc_pre="${f#*sorted.*}"
