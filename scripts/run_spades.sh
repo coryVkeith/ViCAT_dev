@@ -16,8 +16,8 @@ SMPLE=`head -n +${SLURM_ARRAY_TASK_ID} $PROFILE | tail -n 1`
 ###                   Change the suffix to match the reads.                 |
 #___________________________________________________________________________|
 
-F1="${SMPLE}_R1_001.fastq.gz"
-R1="${SMPLE}_R2_001.fastq.gz"
+F1="${SMPLE}_R1.fastq"
+R1="${SMPLE}_R2.fastq"
 
 echo $F1 $R1 "$RAW/$F1" "$RAW/$R1"
 $SPADES/rnaviralspades.py -t 28 -o "${OUT_DIR}/${SMPLE}/spades" -1 ${RAW}/"$F1" -2 ${RAW}/"$R1"
