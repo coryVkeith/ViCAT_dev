@@ -20,7 +20,7 @@ F1="${SMPLE}_R1.fastq"
 R1="${SMPLE}_R2.fastq"
 
 echo $F1 $R1 "$RAW/$F1" "$RAW/$R1"
-$SPADES/rnaviralspades.py -t 28 -o "${OUT_DIR}/${SMPLE}/spades" -1 ${RAW}/"$F1" -2 ${RAW}/"$R1"
+$SPADES -t 28 -o "${OUT_DIR}/${SMPLE}/spades" -1 ${RAW}/"$F1" -2 ${RAW}/"$R1"
 #-----------------------------------------------------------------------------------------------------------|
 ###                                                                                                         |
 ### This code filters the spades contigs by 30x coverage and 250bp - 5000bp lengths for faster blast times. |
