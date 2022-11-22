@@ -21,7 +21,7 @@ if [[ -f "${OUT_DIR}/${SMPLE}/bowtie2/alignments/${SMPLE}_vircom_nr_sorted.bam" 
     for f in ${SMPLE}*_sorted.REF*
         do
 #        samtools depth $f > ${OUT_DIR}/${SMPLE}/bowtie2/alignments/coverage/${f}.coverage
-        module load bedtools2
+#        module load bedtools2
         bedtools genomecov -bg -ibam $f > ${OUT_DIR}/${SMPLE}/bowtie2/alignments/coverage/${f}.coverage
         sed -i -r 's/(\s+)?\S+//2' ${OUT_DIR}/${SMPLE}/bowtie2/alignments/coverage/${f}.coverage
     done
