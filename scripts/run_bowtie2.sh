@@ -20,13 +20,13 @@ R1="${SMPLE}_R2.fastq"
 
 ###bowtie2 build index of filtered references above
 if [[ -f "$OUT_DIR/$SMPLE/blast_ref_fasta/${SMPLE}_nr_ref.fasta" ]]; then
-    $BOWTIE/bowtie2-build -f $OUT_DIR/$SMPLE/blast_ref_fasta/${SMPLE}_nr_ref.fasta $OUT_DIR/$SMPLE/blast_ref_fasta/bowtie2index/${SMPLE}_nr_idx
+    $BOWTIEBUILD -f $OUT_DIR/$SMPLE/blast_ref_fasta/${SMPLE}_nr_ref.fasta $OUT_DIR/$SMPLE/blast_ref_fasta/bowtie2index/${SMPLE}_nr_idx
     else
     echo "Error in run_bowtie2buildnmap.sh, bowtie2. No CD-HIT clustered reference fasta file found to build index. Stopping at build." >> $ERRORS/${SMPLE}_error.log
 fi
 ##bowtie2 reference mapping to indexes
 if [[ -f "$OUT_DIR/$SMPLE/blast_ref_fasta/${SMPLE}_nr_ref.fasta" ]]; then    
-    $BOWTIE/bowtie2 --un-conc ${OUT_DIR}/${SMPLE}/bowtie2/unused_reads/"${SMPLE}_vircom_rm.fastq" -x ${OUT_DIR}/${SMPLE}/blast_ref_fasta/bowtie2index/"${SMPLE}_nr_idx" -q -1 ${RAW}/$F1 -q -2 ${RAW}/$R1 -S ${OUT_DIR}/${SMPLE}/bowtie2/alignments/${SMPLE}_vircom_nr.SAM
+    $BOWTIE --un-conc ${OUT_DIR}/${SMPLE}/bowtie2/unused_reads/"${SMPLE}_vircom_rm.fastq" -x ${OUT_DIR}/${SMPLE}/blast_ref_fasta/bowtie2index/"${SMPLE}_nr_idx" -q -1 ${RAW}/$F1 -q -2 ${RAW}/$R1 -S ${OUT_DIR}/${SMPLE}/bowtie2/alignments/${SMPLE}_vircom_nr.SAM
     else
     echo "Error in run_bowtie2buildnmap.sh, bowtie2. No reference fasta file found to build index. Stopping at mapping" >> $ERRORS/${SMPLE}_error.log
 fi
