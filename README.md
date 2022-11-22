@@ -44,6 +44,7 @@ Before ViCAT can be run, a database needs to be created for blast. The instructi
 
 ### Anaconda environment yaml
 ***Recommended***
+
 `ViCAT.yml` is included in the home directory. If this is the installation, do not change the lines in the `config.sh` file that include the paths to the tools.
 
 To install an environment containing all of the tools:
