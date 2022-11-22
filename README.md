@@ -68,7 +68,7 @@ If tools are not installed on your HPC download the tools and install. Change th
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 ## Tutorial
-Example data to generate all of the figures for a simulated viral mock community that has differential relative abundance in response to host background have been included in `CWD/test_data/`.
+Example data to generate all of the figures for a simulated viral mock community that has differential relative abundance in response to host background have been included in `CWD/test_data/`. Simulated host resistance was based on the assumption that viruses for which a host is resistant will have a lower relative abundance of reads mapped.
 
 1. Navigate to `CWD/test_data/sim_resist/mock_reads/` to look at the simulated illumina data. Create a `profile.txt` that includes the sample name only, excluding the suffixes for the illumina read pairs. One is already provided with the appropriate sample names in `CWD/`
 2. There are two scripts that must be edited to match the suffix of the files to include for the illumina read pair information. This will be different for each run of ViCAT.
@@ -79,10 +79,15 @@ Example data to generate all of the figures for a simulated viral mock community
 5. OPTIONAL but ***suggested***: edit the `CWD/scripts/run_covgraph.sh` line 53-60 to remove portions of the sample name which may be uninformative and cause difficulties in reading coverage graph titles in the output files. The file can be found in `CWD/scripts`.
     - The `$samp_pref` variable should be changed to exclude uniformative information in the file name to only include the unique identifiers of the samples. This will allow for easier readability in the coverage graph titles. For this set, "begomovirus" is common to all of the samples so it should be removed at line 53. 
     - The `$samp_suff` variable should be changed in a similar manner at line 54. 
-6. 
+6. Run the `run.sh` file: `./run.sh`.
+7. Once the run has finished, look in the `CWD/OUT_DIR/relative_abundance/` directory for output files to copy to `CWD/Community_Assembly/`. 
+8. Change the `metadata.csv` file to include information about plant host resistance. The relavant data is found in `CWD/Community_Assembly/plant_genotype.csv`. It is worth noting that the order of the plant IDs may be different in the `metadata.csv` file than the **a priori** `plant_genotype.csv` file.
+9. Run `Phyloseq_Community_Characterization.R` on terminal, or in R-Studio.
+10. Files and graphs will be generated in the `CWD/Community_Assembly/` directory.
+11. Ordination plots should discriminate plant samples by genotype of plant if run correctly.
 
 
-## Quick Usage
+## Usage
 * Lines of code that can be changed are identified by obvious comment boxes in the respective scripts.*
 
 1. Edit the `config.sh` file in the home directory to include paths to:
