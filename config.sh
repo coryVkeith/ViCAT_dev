@@ -7,14 +7,14 @@ export RAW="/CWD/test_data/sim_resist/mock_reads"
 export OUT_DIR="/CWD/out"
 export PROFILE="/CWD/profile.txt"
 
-# Location of tools and indices if installed outside of anaconda environemnt
-export BOWTIE=""
-export BOWTIEBUILD""
-export SPADES=""
+# Location of tools and indices if installed outside of anaconda environemnt, add the path before the commands. If installed in an Anaconda environment, options for running tools can change. Otherwise these are the tools arguments.
+export BOWTIE="bowtie2"
+export BOWTIEBUILD"bowtie2-build"
+export SPADES="rnaviralspades.py"
 export SEQKIT="seqkit"
 export CSVTK="csvtk"
-export BAMTOOLS=""
-export BEDTOOLS=""
+export BAMTOOLS="bamtools"
+export BEDTOOLS="bedtools"
 
 # Location of blast database and 1 line fasta
 export BLASTDB="CWD/blastdb/[database]"
