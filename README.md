@@ -38,7 +38,7 @@
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 ## Database
 
-Before ViCAT can be run, a database needs to be created for blast. The instructions and a code for building custom databases are included in `CWD/blastdb`.
+Before ViCAT can be run, a database needs to be created for blast. The instructions and a code for building custom databases are included in `CWD/blastdb`. This only needs to be done any time a different database is required to run.
 
 ## Installation
 
@@ -74,7 +74,7 @@ Example data to generate all of the figures for a simulated viral mock community
 2. There are two scripts that must be edited to match the suffix of the files to include for the illumina read pair information. This will be different for each run of ViCAT.
     - `CWD/scripts/run_spades.sh` must be changed at lines 19 and 20 to match he suffix of the reads. `_R1.fastq` and `_R2.fastq` for each respective variable.
     - `CWD/scripts/run_bowtie2.sh` must be changed at lines 18 and 19 to match the suffix of the reads. `_R1.fastq` and `_R2.fastq` for each respective variable.
-3. Navigate back to the `CWD/` and edit the `config.sh` file to include the path to the raw data: `CWD/test_data/sim_resist/mock_reads/`. Also edit the path to the `profile.txt` file: `CWD/profile.txt`.
+3. Navigate back to the `CWD/` and edit the `config.sh` file to include the path to the raw data: `CWD/test_data/sim_resist/mock_reads/`. Also edit the path to the `profile.txt` file: `CWD/profile.txt`, and the path to the blast database.
 4. The paths to tools should not need to be edited, if the `ViCAT.yml` was used to install the dependencies. If not, change the pahts to the tools.
 5. OPTIONAL but ***suggested***: edit the `CWD/scripts/run_covgraph.sh` line 53-60 to remove portions of the sample name which may be uninformative and cause difficulties in reading coverage graph titles in the output files. The file can be found in `CWD/scripts`.
     - The `$samp_pref` variable should be changed to exclude uniformative information in the file name to only include the unique identifiers of the samples. This will allow for easier readability in the coverage graph titles. For this set, "begomovirus" is common to all of the samples so it should be removed at line 53. 
