@@ -9,7 +9,7 @@ export PROFILE="/CWD/profile.txt"
 
 # Location of tools and indices if installed outside of anaconda environemnt, add the path before the commands. If installed in an Anaconda environment, options for running tools can change. Otherwise these are the tools arguments.
 export BOWTIE="bowtie2"
-export BOWTIEBUILD"bowtie2-build"
+export BOWTIEBUILD="bowtie2-build"
 export SPADES="rnaviralspades.py"
 export SEQKIT="seqkit"
 export CSVTK="csvtk"
