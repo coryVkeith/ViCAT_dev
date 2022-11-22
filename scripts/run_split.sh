@@ -11,7 +11,7 @@ export SMPLE=`head -n +${SLURM_ARRAY_TASK_ID} $PROFILE | tail -n 1`
 
 cd ${OUT_DIR}/${SMPLE}/bowtie2/alignments/
 echo ${OUT_DIR}/${SMPLE}/blast_ref_fasta/"${SMPLE}_blasthits.fasta"
-$BAMTOOLS/bamtools split -in ${OUT_DIR}/${SMPLE}/bowtie2/alignments/"${SMPLE}_vircom_nr_sorted.bam" -reference
+$BAMTOOLS split -in ${OUT_DIR}/${SMPLE}/bowtie2/alignments/"${SMPLE}_vircom_nr_sorted.bam" -reference
 
 #_________________________________________________________________________________|
 ###                                                                               |
