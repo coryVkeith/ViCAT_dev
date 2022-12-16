@@ -23,6 +23,92 @@
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 
+
+
+
+## Installation
+
+This pipeline has been tested on CentOS linux; should work in all linux distributions.
+
+### Option 1 (conda version)
+
+Conda is the easiest way to install ViCAT. If you do not have conda installed, it can be installed following this link.
+
+```
+# Clone repository
+git clone git@github.com:coryVkeith/ViCAT_dev.git
+
+cd ViCAT_dev/scripts
+
+# Create Conda environment
+conda env create -f ViCAT_v0.1.yml
+conda activate ViCAT
+```
+
+### Option 2 (Manual installation of each dependancies and tools)
+
+ViCAT relies on several external tools that can be individually installed:
+- [SPAdes](https://github.com/ablab/spades): at least version 3.15.1
+- [SeqKit](https://github.com/shenwei356/seqkit)
+- [csvtk](https://github.com/shenwei356/csvtk)
+- [Local Blast](https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=Download)
+- [CD-HIT](http://bioinformatics.org/cd-hit/)
+- [Bowtie2](https://bowtie-bio.sourceforge.net/bowtie2/index.shtml)
+- [samtools](http://www.htslib.org/)
+- [bamtools](https://github.com/pezmaster31/bamtools)
+- R packages: ggplot2; gridExtra; plyr, deseq2, phyloseq
+- Python (3.6 or higher) packages: Bipython; sys
+
+## Download database and dependencies
+
+Before running ViCAT, users must download the RefSeq reference database, this task only needs to be done once. Alternatively, users can generate a custom blast database of reference.
+
+```
+cd ViCAT_dev/blastdb
+
+bash build_blastdb.sh
+
+# the database should take few minutes to get created
+```
+
+## Run ViCAT
+
+The complete ViCAT pipeline contains 9 successive steps (XX optional steps). Each step is contained in a separate function described below. 
+
+This tutorial uses a simulated viral mock community that has differential relative abundance in response to host background have been included in the folder test_data. Simulated host resistance was based on the assumption that viruses for which a host is resistant will have a lower relative abundance of reads mapped.
+
+###  1. Assembly and contig filtering
+
+The first step of the ViCAT pipeline is the assembly of the reads and contig length filtering. ViCAT leverages SPADES as an assembler. If the users have generated their own assembly, they may skip this step.
+
+
+**VICAT_assembly.sh usage:**
+
+```
+VICAT_assembly.sh -s ${SAMPLE NAME} -f ${FORWARD READ} -r ${REVERSE READ} -o ${OUTPUT DIRECTORY}
+```
+
+As an example to run on one sample :
+
+```
+cd ViCAT_dev/scripts
+TEST_SET="../test_data/sim_resist/mock_reads"
+
+bash ViCAT_assembly.sh -s begomovirus_P10 -f $TEST_SET/begomovirus_P10_R1.fastq -r $TEST_SET/begomovirus_P10_R2.fastq -o ../test_ViCAT
+```
+ 
+
+
+
+
+
+
+
+
+
+
+# THIS IS THE OLD USAGE!!!
+
 ### Dependencies
 - [SPAdes](https://github.com/ablab/spades): at least version 3.15.1
 - [SeqKit](https://github.com/shenwei356/seqkit)
