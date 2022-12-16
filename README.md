@@ -16,10 +16,10 @@
 
 ## Work Flow
 
-![plot](https://github.com/coryVkeith/ViCAT_dev/blob/main/figs/ViCAT_workflow1.png)
+![plot](https://github.com/coryVkeith/ViCAT_dev/blob/main/figs/ViCAT_workflow.png)
 
 ## Directory Structure
-![plot](https://github.com/coryVkeith/ViCAT_dev/blob/main/figs/wildcat_dir2.png)
+![plot](https://github.com/coryVkeith/ViCAT_dev/blob/main/figs/wildcat_directory.png)
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 
