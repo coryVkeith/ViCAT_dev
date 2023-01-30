@@ -97,7 +97,12 @@ TEST_SET="../test_data/sim_resist/mock_reads"
 bash ViCAT_assembly.sh -s begomovirus_P10 -f $TEST_SET/begomovirus_P10_R1.fastq -r $TEST_SET/begomovirus_P10_R2.fastq -o ../test_ViCAT
 ```
  
+**Optional arguments:**
 
+    -c: ***k***-mer coverage minimum threshold to filter. Default is 30x.
+    -M: Maximum length of contig to filter. Default is 20,000nt.
+    -m: Minimum length of contig to filter. Default is 150nt.
+    -t: Number of threads to use for SPAdes de novo assembly. Default is 16. 
 
 ### 2. Taxonomic assignment
 
@@ -126,7 +131,32 @@ FASTA="../blastdb//viraldb_1line.fsa"
     -m: Minimum length of blost hit query to subject. Default is 150.
     -r: Redundancy threshold for building fasta file of RefSeq sequences to use in bowtie2 indexes in subsequent steps. Default is 88.5% PNI.
     
-    
+### 3. Read binning
+
+The third step of ViCAT builds a bowtie2 index from the RefSeq fasta files generated in the taxonomic assignment step and then maps the sample reads to this index. It then sorts the generated alignment files, extracts consensus sequences, writes the number of reads mapped to files, and calls statistics.
+
+**ViCAT_readmap.sh usage:**
+
+```
+ViCAT_readmap.sh -s ${SAMPLE} -f ${FORWARD READS} -r ${REVERSE READS} -o ${OUTPUT DIRECTORY}
+```
+
+As an example to run on one sample :
+
+```
+cd ViCAT_dev/scripts
+TEST_SET="../test_data/sim_resist/mock_reads"
+
+ViCAT_readmap.sh -s begomovirus_P10 -f $TEST_SET/begomovirus_P10_R1.fastq -r $TEST_SET/begomovirus_P10_R2.fastq -o ../test_ViCAT
+```
+
+**Optional argument:**
+
+    -x: Path and name to bowtie2 index.
+
+### 4. Write files for community analysis
+
+
 
 
 
