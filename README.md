@@ -73,13 +73,13 @@ bash build_blastdb.sh
 
 ## Run ViCAT
 
-The complete ViCAT pipeline contains 9 successive steps (XX optional steps). Each step is contained in a separate function described below. 
+The complete ViCAT pipeline contains 4 successive steps (XX optional steps). Each step is contained in a separate function described below. 
 
 This tutorial uses a simulated viral mock community that has differential relative abundance in response to host background have been included in the folder test_data. Simulated host resistance was based on the assumption that viruses for which a host is resistant will have a lower relative abundance of reads mapped.
 
 ###  1. Assembly and contig filtering
 
-The first step of the ViCAT pipeline is the assembly of the reads and contig length filtering. ViCAT leverages SPADES as an assembler. If the users have generated their own assembly, they may skip this step.
+The first step of the ViCAT pipeline is the assembly of the reads and contig length filtering. ViCAT leverages SPAdes as an assembler. If the users have generated their own assembly, they may skip this step.
 
 
 **VICAT_assembly.sh usage:**
@@ -99,7 +99,14 @@ bash ViCAT_assembly.sh -s begomovirus_P10 -f $TEST_SET/begomovirus_P10_R1.fastq 
  
 
 
+### 2. Taxonomic assignment
 
+The second step of the ViCAT pipeline assigns taxonomy to the *de novo* assembled contigs from the step above. This is done by a blastn to the GenBank Viral RefSeq database that the user previously installed. The reference fasta sequence of the queried blast hits for each contig is written to a file for each contig in the sample, and then the RefSeq fasta file is removed of sequences that share a higher nucleotide percent identity than a user defined threshold.
+
+**ViCAT_taxassign.sh usage:**
+
+```
+ViCAT_taxassign.sh -s $[SAMPLE NAME} -d ${BLAST DB PATH} -f ${REFSEQ 1LINE FASTA} -o ${OUTPUT DIRECTORY}
 
 
 
