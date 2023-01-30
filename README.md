@@ -10,7 +10,7 @@
 # **ViCAT**
 
 ## Virus Community Assembly Tool
-  A tool that assembles and characterizes virus communities from target enrichment high-throughput sequncing (TE-HTS)  data within and between samples. To be used on an HPC with slurm scheduler. 
+  A tool that assembles and characterizes virus communities from target enrichment high-throughput sequncing (TE-HTS) data within and between samples. To be used on an HPC with slurm scheduler. 
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -73,7 +73,7 @@ bash build_blastdb.sh
 
 ## Run ViCAT
 
-The complete ViCAT pipeline contains 4 successive steps (XX optional steps). Each step is contained in a separate function described below. 
+The complete ViCAT pipeline contains 4 successive steps (1 optional step). Each step is contained in a separate function described below. 
 
 This tutorial uses a simulated viral mock community that has differential relative abundance in response to host background have been included in the folder test_data. Simulated host resistance was based on the assumption that viruses for which a host is resistant will have a lower relative abundance of reads mapped.
 
@@ -155,7 +155,7 @@ ViCAT_readmap.sh -s begomovirus_P10 -f $TEST_SET/begomovirus_P10_R1.fastq -r $TE
     -x: Path and name to bowtie2 index.
 
 ### 4. Write files for community analysis
-
+The fourth step of ViCAT writes files for use in the optional community characterization and analysis step of ViCAT. It also creates coverage graphs for each of the identifed taxa within a sample. This step should be run after all samples in the set have been submitted to ViCAT.
 
 
 
