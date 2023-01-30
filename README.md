@@ -99,7 +99,7 @@ bash ViCAT_assembly.sh -s begomovirus_P10 -f $TEST_SET/begomovirus_P10_R1.fastq 
  
 **Optional arguments:**
 
-    -c: ***k***-mer coverage minimum threshold to filter. Default is 30x.
+    -c: k-mer coverage minimum threshold to filter. Default is 30x.
     -M: Maximum length of contig to filter. Default is 20,000nt.
     -m: Minimum length of contig to filter. Default is 150nt.
     -t: Number of threads to use for SPAdes de novo assembly. Default is 16. 
