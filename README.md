@@ -101,15 +101,32 @@ bash ViCAT_assembly.sh -s begomovirus_P10 -f $TEST_SET/begomovirus_P10_R1.fastq 
 
 ### 2. Taxonomic assignment
 
-The second step of the ViCAT pipeline assigns taxonomy to the *de novo* assembled contigs from the step above. This is done by a blastn to the GenBank Viral RefSeq database that the user previously installed. The reference fasta sequence of the queried blast hits for each contig is written to a file for each contig in the sample, and then the RefSeq fasta file is removed of sequences that share a higher nucleotide percent identity than a user defined threshold.
+The second step of the ViCAT pipeline assigns taxonomy to the ***de novo*** assembled contigs from the step above. This is done by a blastn to the GenBank Viral RefSeq database that the user previously installed. The reference fasta sequence of the queried blast hits for each contig is written to a file for each contig in the sample, and then the RefSeq fasta file is removed of sequences that share a higher nucleotide percent identity than a user defined threshold.
 
 **ViCAT_taxassign.sh usage:**
 
 ```
 ViCAT_taxassign.sh -s $[SAMPLE NAME} -d ${BLAST DB PATH} -f ${REFSEQ 1LINE FASTA} -o ${OUTPUT DIRECTORY}
+```
 
+As an example to run on one sample :
 
+```
+cd ViCAT_dev/scripts
+BLASTDB="../blastdb/viraldb.fsa"
+FASTA="../blastdb//viraldb_1line.fsa"
 
+./ViCAT_taxassign.sh -s begomovirus_P10 -d $BLASTDB -f $FASTA -o ../test_ViCAT
+```
+
+**Optional arguments:**
+
+    -t: Number of blast hits to show. Default is two. More than two hits is discouraged, as some viruses undergo extensive recombination and this may lead to incomplete coverage graphs and read binning in subsequent steps.
+    -M: Maximum length of blast hit query to subject to select query fasta files for downstream read mapping. Default is 4,500 as is set for ~1,500 nt longer than begomvirus full-length molecules to account for any concatemeric regions or misassemblies.
+    -m: Minimum length of blost hit query to subject. Default is 150.
+    -r: Redundancy threshold for building fasta file of RefSeq sequences to use in bowtie2 indexes in subsequent steps. Default is 88.5% PNI.
+    
+    
 
 
 
