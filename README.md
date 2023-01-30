@@ -133,7 +133,7 @@ FASTA="../blastdb//viraldb_1line.fsa"
     
 ### 3. Read binning
 
-The third step of ViCAT builds a bowtie2 index from the RefSeq fasta files generated in the taxonomic assignment step and then maps the sample reads to this index. It then sorts the generated alignment files, extracts consensus sequences, writes the number of reads mapped to files, and calls statistics.
+The third step of ViCAT builds a bowtie2 index from the RefSeq fasta files generated in the taxonomic assignment step and then maps the sample reads to this index. It then sorts the generated alignment files, extracts consensus sequences, writes the number of reads mapped to files,  calls statistics, and plots coverage graphs of reads mapped to individual virus taxa within a sample.
 
 **ViCAT_readmap.sh usage:**
 
@@ -155,7 +155,12 @@ ViCAT_readmap.sh -s begomovirus_P10 -f $TEST_SET/begomovirus_P10_R1.fastq -r $TE
     -x: Path and name to bowtie2 index.
 
 ### 4. Write files for community analysis
-The fourth step of ViCAT writes files for use in the optional community characterization and analysis step of ViCAT. It also creates coverage graphs for each of the identifed taxa within a sample. This step should be run after all samples in the set have been submitted to ViCAT.
+The fourth step of ViCAT writes files for use in the optional community characterization and analysis step of ViCAT. This step should be run after all samples in the set have been submitted to ViCAT.
+
+**ViCAT_files.sh usage:**
+
+```
+ViCAT_files.sh
 
 
 
