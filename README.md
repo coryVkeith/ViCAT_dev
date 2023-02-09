@@ -155,7 +155,7 @@ ViCAT_readmap.sh -s begomovirus_P10 -f $TEST_SET/begomovirus_P10_R1.fastq -r $TE
     -x: Path and name to bowtie2 index.
 
 ### 4. Write files for community analysis
-The fourth step of ViCAT writes files for use in the optional community characterization and analysis step of ViCAT. This step should be run after all samples in the set have been submitted to ViCAT.
+The fourth step of ViCAT writes files for use in the optional community characterization and analysis step of ViCAT. This step should be run after all samples in the set have been submitted to ViCAT. This step formats all of the data to be fed into the R-script, 'Phyloseq_Community_Characterization.R', found in ViCAT_dev/Community_Assembly. This script utilizes the [phyloseq](https://joey711.github.io/phyloseq/) package in R.
 
 **ViCAT_files.sh usage:**
 
