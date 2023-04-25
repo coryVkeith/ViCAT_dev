@@ -8,6 +8,10 @@
 
 ## this code writes accesion numbers to a list
 
+#Load ViCAT environment
+eval "$(command conda 'shell.bash' 'hook' 2> /dev/null)"
+conda activate ViCAT
+
 export SMPLE=`head -n +${SLURM_ARRAY_TASK_ID} $PROFILE | tail -n 1`
 
 if [[ -f "$OUT_DIR/$SMPLE/blast/${SMPLE}_blastn_results.tsv" ]]; then
