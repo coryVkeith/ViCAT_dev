@@ -6,6 +6,10 @@
 #SBATCH --mem=16G
 #SBATCH -t 1:00:00
 
+#Load ViCAT environment
+eval "$(command conda 'shell.bash' 'hook' 2> /dev/null)"
+conda activate ViCAT
+
 cd $OUT_DIR/virus_contigs/
 #________________________________________________________________________________________|
 ###                                                                                      |
