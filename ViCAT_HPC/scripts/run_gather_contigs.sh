@@ -7,8 +7,9 @@
 #SBATCH --mem=64gb
 #SBATCH -t 1:00:00
 
-# Activates anaconda environment for this code to run.
-source activate bio
+#Load ViCAT environment
+eval "$(command conda 'shell.bash' 'hook' 2> /dev/null)"
+conda activate ViCAT
 
 #Calls the correct sample ID from the profile.txt
 export SMPLE=`head -n +${SLURM_ARRAY_TASK_ID} $PROFILE | tail -n 1`
