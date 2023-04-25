@@ -6,6 +6,12 @@
 #SBATCH --mem-per-cpu=6G
 #SBATCH -t 18:00:00
 
+#Load ViCAT environment
+eval "$(command conda 'shell.bash' 'hook' 2> /dev/null)"
+conda activate ViCAT
+
+module load bowtie2
+
 ## calls the profile variable to pull sample names from a list iteratively
 export SMPLE=`head -n +${SLURM_ARRAY_TASK_ID} $PROFILE | tail -n 1`
 
