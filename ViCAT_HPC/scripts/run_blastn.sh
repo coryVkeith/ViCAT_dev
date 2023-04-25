@@ -7,8 +7,10 @@
 #SBATCH --mem=168gb
 #SBATCH -t 48:00:00
 
-module load blast
 
+#Load ViCAT environment
+eval "$(command conda 'shell.bash' 'hook' 2> /dev/null)"
+conda activate ViCAT
 
 ## This code checks if there are scaffolds or contigs and then sets the variables for use in the blast code below. If no files are present, an error log is printed.
 export SMPLE=`head -n +${SLURM_ARRAY_TASK_ID} $PROFILE | tail -n 1`
