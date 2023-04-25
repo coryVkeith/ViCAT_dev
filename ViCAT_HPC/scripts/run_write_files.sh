@@ -6,6 +6,10 @@
 #SBATCH --mem=5G
 #SBATCH -t 1:00:00
 
+#Load ViCAT environment
+eval "$(command conda 'shell.bash' 'hook' 2> /dev/null)"
+conda activate ViCAT
+
 ## this code writes accesion numbers to a list
 
 export SMPLE=`head -n +${SLURM_ARRAY_TASK_ID} $PROFILE | tail -n 1`
