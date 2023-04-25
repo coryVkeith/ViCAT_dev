@@ -6,6 +6,10 @@
 #SBATCH --mem=16G
 #SBATCH -t 1:00:00
 
+#Load ViCAT environment
+eval "$(command conda 'shell.bash' 'hook' 2> /dev/null)"
+conda activate ViCAT
+
 SMPLE=`head -n +${SLURM_ARRAY_TASK_ID} $PROFILE | tail -n 1`
 
 ##rm -r ./coverage
@@ -67,7 +71,7 @@ fi
 
 cd ${OUT_DIR}/${SMPLE}/bowtie2/alignments/coverage/
 
-if [[ -f "${OUT_DIR}/${SMPLE}/bowtie2/alignments/coverage/${SMPLE}_vircom_nr_sorted.REF_unmapped.bam.coverage" ]]; then
+if compgen -G "*unmapped.bam.coverage" > /dev/null; then
     rm *REF_unmapped.bam.coverage
 else
     echo "No unmapped coverage" >> $ERRORS/${SMPLE}_error.log
