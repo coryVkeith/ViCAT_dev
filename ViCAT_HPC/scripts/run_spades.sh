@@ -7,6 +7,10 @@
 
 #SBATCH -t 48:00:00
 
+#Load ViCAT environment
+eval "$(command conda 'shell.bash' 'hook' 2> /dev/null)"
+conda activate ViCAT
+
 
 SMPLE=`head -n +${SLURM_ARRAY_TASK_ID} $PROFILE | tail -n 1`
 
